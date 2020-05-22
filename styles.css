@@ -1,0 +1,84 @@
+header {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    text-align: center;
+}
+
+footer,
+footer a {
+    background-color: #3c3c3c;
+    color: #ffffff;
+}
+
+table {
+    width: 100%;
+    column-width: 30%;
+}
+
+option {
+    border: none;
+}
+
+ul {
+    font: 14px Verdana, Geneva, sans-serif;
+    text-align: center;
+}
+
+ul li {
+    display: inline-block;
+    width: 170px;
+    min-height: 260px;
+    margin-bottom: 10px;
+    margin: 0 15px 55px;
+    background: #E76D13;
+    vertical-align: top;
+    text-align: center;
+    line-height: normal;
+    border: solid 1px #b5b5b5;
+    border-radius: 10px;
+    background: #ffffff;
+
+    /* эмуляция inline-block для IE6-7*/
+    //display : inline;
+    //zoom : 1;
+}
+
+.currency_button {
+    min-width: 150px;
+}
+
+/*styling for book cards*/
+.picture {
+    position: relative;
+    overflow: hidden;
+    height: 134px;
+    max-width: 100%;
+    border-radius: inherit;
+}
+
+.info {
+    padding: 10px 16px;
+    text-align: left;
+}
+
+.title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.grade {
+    font-size: 14px;
+    padding-left: .5em;
+    margin-top: -.2em;
+}
+
+.genre {
+    font-size: 11px;
+    margin-top: -.4em;
+}

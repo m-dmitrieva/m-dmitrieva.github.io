@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title>Example Title</title>
+    <meta name="author" content="Your Name">
+    <meta name="description" content="Example description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>Витрина</header>
+    <main>
+        <form action="" method="" id="filters" name="filters">
+            <select id="subject" name="subject" class="filters" onchange="loadData.changeFilter()">
+            </select>
+            <select id="genre" name="genre" class="filters" onchange="loadData.changeFilter()">
+            </select>
+            <select id="grade" name="grade" class="filters" onchange="loadData.changeFilter()">
+            </select>
+            <span><input type="text" id="search_input" name="search" class="filters" placeholder="Поиск...">
+                <button type="button" id="search_button" name="search" class="filters" onclick="loadData.search()">Search</button>
+            </span>
+            <button type="button" id="currency_button" class="currency_button" onclick="loadData.changeCurrency()">Цена в бонусах</button>
+        </form>
+        <section id="content" name="content">
+            <ul id="books">
+
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <table>
+            <td>
+                <p>&copy;<a href="http://physiconlab.ru/">ООО &laquo;Физикон Лаб&raquo;</a>, 2013-2020</p>
+                <p><a href="/privacy">Пользовательское соглашение</a></p>
+            </td>
+            <td rowspan="2">Соц. сети</td>
+            <td>
+                <p><a href="tel:+74993220757">+7 (499) 322-07-57, </a>
+                    <a href="mailto:info@imumk.ru">info@imumk.ru</a></p>
+                <p><a href="regulations">Правила пользования сайтом</a></p>
+            </td>
+        </table>
+    </footer>
+    <script type="application/javascript" src="script.js"></script>
+</body>
+
+</html>

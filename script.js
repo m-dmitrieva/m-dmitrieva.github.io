@@ -19,8 +19,8 @@ loadData.onLoad = function (e) {
     };
 
     //create and send POST request
-    httprequest.open("POST", "http://krapipl.imumk.ru:8082/api/mobilev1/update", true);
-    httprequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httprequest.open('POST', 'http://krapipl.imumk.ru:8082/api/mobilev1/update', true);
+    httprequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     httprequest.responseType = 'json';
     httprequest.send(myJson);
 };
@@ -39,7 +39,7 @@ loadData.handleResponse = function (response) {
         Subjects.add(items[i].subject);
         Genres.add(items[i].genre);
 
-        // parse Grade, because in may contain several grades in one line
+        // parse Grade, because it may contains several grades in one line
         let years = items[i].grade.split(';');
         for (j = 0; j < years.length; j++) {
             Grades.add(years[j]);
@@ -47,18 +47,18 @@ loadData.handleResponse = function (response) {
 
     }
 
-    loadData.setOptionsForFilter("subject", Subjects, "Все предметы");
-    loadData.setOptionsForFilter("genre", Genres, "Все жанры");
-    loadData.setOptionsForFilter("grade", Grades, "Все классы");
+    loadData.setOptionsForFilter('subject', Subjects, 'Все предметы');
+    loadData.setOptionsForFilter('genre', Genres, 'Все жанры');
+    loadData.setOptionsForFilter('grade', Grades, 'Все классы');
 
-    loadData.loadContentOnUList("books", items);
+    loadData.loadContentOnUList('books', items);
 }
 
 //load all values from optionSet to <select> tag
 loadData.setOptionsForFilter = function (filterName, optionSet, title) {
     var select = document.getElementById(filterName);
 
-    // add value for "All values"
+    // add value for 'All values'
     var titleOp = new Option(title, title);
     select.append(titleOp);
 
@@ -67,13 +67,13 @@ loadData.setOptionsForFilter = function (filterName, optionSet, title) {
 
     // for grades (i.e. numbers) sorting uses numerical order
     // for other filter values -- alphabetical
-    if (filterName == "grade") {
+    if (filterName == 'grade') {
         optionArr.sort(loadData.compareNum);
     } else {
         optionArr.sort();
     }
 
-    // iserting new <option> tags inot <select>
+    // iserting new <option> tags into <select>
     for (i = 0; i < optionArr.length; i++) {
         var newOption = new Option(optionArr[i], optionArr[i]);
         select.append(newOption);
@@ -85,57 +85,57 @@ loadData.loadContentOnUList = function (container, contentList) {
     var content = document.getElementById(container);
 
     for (i = 0; i < contentList.length; i++) {
-        var newLi = document.createElement("li");
-        newLi.setAttribute("name", "book_item");
+        var newLi = document.createElement('li');
+        newLi.setAttribute('name', 'book_item');
 
         //insert image
-        var divImg = document.createElement("div");
-        divImg.setAttribute("class", "picture");
-        Img = document.createElement("img");
-        Img.src = "demoImage.jpeg";
+        var divImg = document.createElement('div');
+        divImg.setAttribute('class', 'picture');
+        Img = document.createElement('img');
+        Img.src = 'demoImage.jpeg';
         divImg.appendChild(Img);
 
         //insert text for image
-        var divText = document.createElement("div");
-        divText.setAttribute("class", "info");
+        var divText = document.createElement('div');
+        divText.setAttribute('class', 'info');
 
         //Subject
-        p = document.createElement("p");
+        p = document.createElement('p');
         p.innerText = contentList[i].subject;
-        p.setAttribute("class", "title");
+        p.setAttribute('class', 'title');
         divText.appendChild(p);
 
         //Grade
-        p = document.createElement("p");
+        p = document.createElement('p');
         var temp = contentList[i].grade.split(';');
         // choose right for word "класс"
         if (temp.length == 1) {
-            p.innerText = contentList[i].grade + " класс";
+            p.innerText = contentList[i].grade + ' класс';
         } else {
-            p.innerText = temp[0] + "-" + temp[temp.length - 1] + " классы";
+            p.innerText = temp[0] + "-" + temp[temp.length - 1] + ' классы';
         }
-        p.setAttribute("class", "grade");
+        p.setAttribute('class', 'grade');
         divText.appendChild(p);
 
         //Genre
-        p = document.createElement("p");
+        p = document.createElement('p');
         p.innerText = contentList[i].genre;
-        p.setAttribute("class", "genre");
+        p.setAttribute('class', 'genre');
         divText.appendChild(p);
 
         //Price
         //by default price in roubles
-        //prices in bonuses hiden while press the currency_button
-        p = document.createElement("p");
-        p.innerText = "Цена: " + contentList[i].price + " руб.";
-        p.setAttribute("class", "rubles");
+        //prices in bonuses hidden while press the currency_button
+        p = document.createElement('p');
+        p.innerText = 'Цена: ' + contentList[i].price + ' руб.';
+        p.setAttribute('class', 'rubles');
         p.hidden = false;
         divText.appendChild(p);
 
-        p = document.createElement("p");
-        p.innerText = "Цена: " + contentList[i].priceBonus + " бон.";
-        p.setAttribute("class", "bonuses");
-        p.hidden = "true";
+        p = document.createElement('p');
+        p.innerText = 'Цена: ' + contentList[i].priceBonus + ' бон.';
+        p.setAttribute('class', 'bonuses');
+        p.hidden = true;
         divText.appendChild(p);
 
         newLi.appendChild(divImg);
@@ -152,6 +152,7 @@ loadData.compareNum = function (a, b) {
     return a - b;
 }
 
+//clear <ul> tag containig all book items
 loadData.delUl = function (id) {
     var elem = document.getElementById(id);
     elem.innerHTML = '';
@@ -162,10 +163,10 @@ loadData.changeFilter = function (e) {
     // get array of filtered elements
     var filtered = loadData.filtering();
 
-    //clear <ul id="books" and inserting filtered elements
-    loadData.delUl("books");
+    //clear <ul id="books"> and inserting filtered elements
+    loadData.delUl('books');
     if (filtered.length != 0) {
-        loadData.loadContentOnUList("books", filtered);
+        loadData.loadContentOnUList('books', filtered);
     } else {
 
     }
@@ -173,20 +174,20 @@ loadData.changeFilter = function (e) {
 
 //checks the filters from form and returns filtered result array
 loadData.filtering = function () {
-    var subject = document.getElementById("subject").value;
-    genre = document.getElementById("genre").value;
-    grade = document.getElementById("grade").value;
+    var subject = document.getElementById('subject').value;
+    genre = document.getElementById('genre').value;
+    grade = document.getElementById('grade').value;
 
     items = loadData.response['items'];
     result = [];
 
-    if (subject == "Все предметы") {
+    if (subject == 'Все предметы') {
         subject = '';
     }
-    if (genre == "Все жанры") {
+    if (genre == 'Все жанры') {
         genre = '';
     }
-    if (grade == "Все классы") {
+    if (grade == 'Все классы') {
         grade = '';
     }
 
@@ -227,40 +228,37 @@ loadData.filtering = function () {
 }
 
 loadData.search = function (e) {
-    var template = document.getElementById("search_input").value.toLowerCase();
+    var template = document.getElementById('search_input').value.toLowerCase();
     items = loadData.response['items'];
     result = [];
     for (i = 0; i < items.length; i++) {
         var title = items[i].title.toLowerCase();
         if (title.indexOf(template) >= 0) {
             result.push(items[i]);
-            console.log('OK');
         }
 
     }
 
-    loadData.delUl("books");
-    loadData.loadContentOnUList("books", result);
+    loadData.delUl('books');
+    loadData.loadContentOnUList('books', result);
 }
 
 loadData.changeCurrency = function (e) {
-    var btn = document.getElementById("currency_button");
+    var btn = document.getElementById('currency_button');
 
-    allRubItems = document.getElementById("books").querySelectorAll('p.rubles');
+    allRubItems = document.getElementById('books').querySelectorAll('p.rubles');
 
-    allBonusItems = document.getElementById("books").querySelectorAll('p.bonuses');
+    allBonusItems = document.getElementById('books').querySelectorAll('p.bonuses');
 
-    if (btn.innerText == "Цена в бонусах") {
-        btn.innerText = "Цена в рублях";
+    if (btn.innerText == 'Цена в бонусах') {
+        btn.innerText = 'Цена в рублях';
         for (i = 0; i < allRubItems.length; i++) {
             allRubItems[i].hidden = true;
-            console.log(allRubItems[i]);
             allBonusItems[i].hidden = false;
-            console.log(allBonusItems[i]);
         }
 
     } else {
-        btn.innerText = "Цена в бонусах";
+        btn.innerText = 'Цена в бонусах';
         for (i = 0; i < allRubItems.length; i++) {
             allRubItems[i].hidden = false;
 
